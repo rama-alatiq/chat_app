@@ -16,7 +16,7 @@ class ChatScreen extends StatelessWidget {
               FirebaseAuth.instance.signOut();
             },
              icon: const Icon(Icons.exit_to_app),
-             color:Theme.of(context).colorScheme.primary,
+             color:const Color.fromARGB(255, 108, 99, 255),
              )
         ],
       ),

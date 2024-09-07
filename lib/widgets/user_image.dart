@@ -1,0 +1,58 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class UserImagePicker extends StatefulWidget {
+  const UserImagePicker({super.key});
+
+  @override
+  State<UserImagePicker> createState() => _UserImagePickerState();
+}
+
+class _UserImagePickerState extends State<UserImagePicker> {
+  File? _pickedImageFile;
+
+  void _pickImage() async{
+    final XFile? pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxWidth: 150,
+      imageQuality: 50,
+      );
+  if(pickedImage==null){
+    return;
+  }
+
+  setState(() {
+    _pickedImageFile=File(pickedImage.path);
+  });
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+       CircleAvatar(
+          radius: 40,
+          backgroundColor: const Color.fromARGB(209, 158, 158, 158),
+          foregroundImage:
+          _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
+        ),
+        TextButton.icon(
+          onPressed: _pickImage,
+          icon: const Icon(Icons.image,color: Color.fromARGB(255, 108, 99, 255),),
+           label:  const Text(
+            'Add Image',
+            style: TextStyle(
+              color: Color.fromARGB(255, 108, 99, 255),
+              )
+            ),
+            
+            ),
+         
+      ],
+    );
+  }
+}

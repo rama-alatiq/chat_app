@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         
       ),
-      //futureBuilder will only give me one data unlike the streanBuilder it will always be updated
+      // streanBuilder will always keep the data strem updated 
       home: StreamBuilder(
        // it will observe the changes of auth state  
       stream: FirebaseAuth.instance.authStateChanges(),
